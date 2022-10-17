@@ -32,6 +32,9 @@
           <router-link to="/admin">admin</router-link>
         </el-menu-item>
       </el-menu>
+      <div class="input">
+        <el-input v-model="keyword" placeholder="请输入内容"></el-input>
+      </div>
     </el-header>
     <el-container class="container">
       <el-main class="pageMain">
@@ -41,7 +44,17 @@
         <router-view v-if="!$route.meta.isKeepAlive">前台二级路由</router-view>
       </el-main>
       <el-aside class="pageAside" style="width: 350px">
-        Aside
+        <!-- 广告位 -->
+        <Advert :prop="prop">
+          <template>
+            <div class="ad" v-for="adObj in prop.ads" :key="adObj.id">
+              <el-image
+                style="width: 310px; height: 400px; margin-bottom: 10px;"
+                :src="adObj.pic">
+              </el-image>
+            </div>
+          </template>
+        </Advert>
       </el-aside>
     </el-container>
     <el-footer class="pageFooter">
@@ -64,14 +77,39 @@
 
 <script>
   import HomeFooter from '@/components/HomeFooter.vue';
+import Advert from '@/components/Advert.vue';
   export default {
     name: 'HomeView',
     components: {
-      HomeFooter,
-    },
+    HomeFooter,
+    Advert
+},
     data() {
       return {
-        
+        keyword: '',
+        prop: {
+          title: '广告位',
+          ads: [
+            {
+                id: '001',
+                name:"ad 1",
+                pic:"upload/top250/1.jpg",
+                link:"http://xxx.xxx1.com",
+            },
+            {
+                id: '002',
+                name:"ad 2",
+                pic:"upload/top250/1.jpg",
+                link:"http://xxx.xxx2.com",
+            },
+            {
+                id: '003',
+                name:"ad 3",
+                pic:"upload/top250/1.jpg",
+                link:"http://xxx.xxx3.com",
+            }
+          ]
+        }
       }
     }
   }
@@ -80,8 +118,13 @@
 <style lang="scss" scoped>
   .pageHeader {
     height: 100px;
-    padding: 20px;
+    padding: 20px 100px;
     background-color: #2F4F4F;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     .navBar {
       border-bottom: none;
       a {
@@ -94,6 +137,11 @@
         font-size: 1.2rem;
         font-weight: bold;
       }
+    }
+
+    .input {
+      padding: 0 20px;
+      width: 300px;
     }
   }
 
@@ -126,17 +174,17 @@
 
   .container {
     background-color: #F0FFFF;
-    width: 1400px;
+    width: 1700px;
     gap: 50px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 70px;
     .pageMain {
-      background-color: aqua;
-  
+      // background-color: aqua;
+      padding: 0;
     }
   
     .pageAside {
-      background-color: #E0FFFF;
+      // background-color: #E0FFFF;
     }
   }
 

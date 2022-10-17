@@ -22,6 +22,7 @@
 <style lang="scss" scoped>
   .content {
     overflow: hidden;
+    padding: 0 100px;
 
     & > div {
       display: inline-block;
