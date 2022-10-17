@@ -1,39 +1,45 @@
 <template>
   <div class="home">
     <el-header class="pageHeader" style="height: 100px">
-      <el-menu 
-        class="navBar" 
-        mode="horizontal"
-        background-color="#2F4F4F"
-        text-color="#fff"
-        active-text-color="#F0FFFF">
-        <el-menu-item index="1">
-          <router-link to="/home">首页</router-link>
-        </el-menu-item>
-        <el-menu-item index="2">
-          <router-link to="/home/movies">电影</router-link>
-        </el-menu-item>
-        <el-menu-item index="3">
-          <router-link to="/home/top">推荐电影</router-link>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <router-link to="/home/ucenter">用户中心</router-link>
-        </el-menu-item>
-        <el-menu-item index="5">
-          <router-link to="/home/login">登录</router-link>
-        </el-menu-item>
-        <el-menu-item index="6">
-          <router-link to="/home/reg">注册</router-link>
-        </el-menu-item>
-        <el-menu-item index="7" disabled>
-          <router-link to="/home/detail/34543456564">测试详情</router-link>
-        </el-menu-item>
-        <el-menu-item index="8">
-          <router-link to="/admin">admin</router-link>
-        </el-menu-item>
-      </el-menu>
-      <div class="input">
-        <el-input v-model="keyword" placeholder="请输入内容"></el-input>
+      <div class="header_container">
+        <el-menu 
+          class="navBar" 
+          mode="horizontal"
+          background-color="#2F4F4F"
+          text-color="#fff"
+          active-text-color="#F0FFFF">
+          <el-menu-item index="1">
+            <router-link to="/home">首页</router-link>
+          </el-menu-item>
+          <el-menu-item index="2">
+            <router-link to="/home/movies">电影</router-link>
+          </el-menu-item>
+          <el-menu-item index="3">
+            <router-link to="/home/top">推荐电影</router-link>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <router-link to="/home/ucenter">用户中心</router-link>
+          </el-menu-item>
+          <el-menu-item index="5">
+            <router-link to="/home/login">登录</router-link>
+          </el-menu-item>
+          <el-menu-item index="6">
+            <router-link to="/home/reg">注册</router-link>
+          </el-menu-item>
+          <el-menu-item index="7" disabled>
+            <router-link to="/home/detail/34543456564">测试详情</router-link>
+          </el-menu-item>
+          <el-menu-item index="8">
+            <router-link to="/admin">admin</router-link>
+          </el-menu-item>
+        </el-menu>
+        <div class="input">
+          <el-input 
+            v-model="keyword"
+            placeholder="请输入查询内容，按enter确认"
+            @change="searchMovies">
+          </el-input>
+        </div>
       </div>
     </el-header>
     <el-container class="container">
@@ -81,9 +87,9 @@ import Advert from '@/components/Advert.vue';
   export default {
     name: 'HomeView',
     components: {
-    HomeFooter,
-    Advert
-},
+      HomeFooter,
+      Advert
+    },
     data() {
       return {
         keyword: '',
@@ -111,16 +117,33 @@ import Advert from '@/components/Advert.vue';
           ]
         }
       }
+    },
+    methods: {
+      searchMovies() {
+        if (this.keyword) {
+          this.$router.push('/home/search/' + this.keyword);
+        }
+        this.keyword = '';
+      }
     }
   }
 </script>
 
 <style lang="scss" scoped>
+  .home {
+    overflow: hidden;
+  }
+
   .pageHeader {
+    width: 100%;
+    background-color: #2F4F4F;
     height: 100px;
     padding: 20px 100px;
-    background-color: #2F4F4F;
-
+    position: fixed;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .header_container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -176,7 +199,7 @@ import Advert from '@/components/Advert.vue';
     background-color: #F0FFFF;
     width: 1700px;
     gap: 50px;
-    margin: 0 auto;
+    margin: 100px auto 0;
     padding: 40px 70px;
     .pageMain {
       // background-color: aqua;
@@ -185,6 +208,7 @@ import Advert from '@/components/Advert.vue';
   
     .pageAside {
       // background-color: #E0FFFF;
+      
     }
   }
 

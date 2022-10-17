@@ -27,6 +27,11 @@ const routes = [
         component: () => import("@/views/home/TopView.vue")
       },
       {
+        path: "search/:keyword",
+        name: "search",
+        component: () => import("@/views/home/SearchView.vue")
+      },
+      {
         path: "ucenter",
         name:"ucenter",
         component: () => import("@/views/home/UcenterView.vue"),
