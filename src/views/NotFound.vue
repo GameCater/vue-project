@@ -5,16 +5,16 @@
 </template>
 
 <script>
-  export default {
-    name: 'NotFound',
-  }
+export default {
+  name: "NotFound",
+};
 </script>
 
 <style lang="scss" scoped>
-  .err {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #2F4F4F;
-  }
+.err {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2f4f4f;
+}
 </style>

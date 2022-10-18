@@ -6,5 +6,4 @@
 
 <style lang="scss">
   @import url('@/assets/style.scss');
-
 </style>
