@@ -1,19 +1,24 @@
-# project
+# 一个简单的Vue项目
+## 技术栈
+- vue2
+- element-ui
+- node.js
+- express
 
-## Project setup
+## 项目初始化
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 启动代理服务器
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 项目打包构建
 ```
 npm run build
 ```
 
-### Customize configuration
+### 个性化配置
 See [Configuration Reference](https://cli.vuejs.org/config/).

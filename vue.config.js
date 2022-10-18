@@ -1,6 +1,7 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
+  // 配置代理服务器
   devServer: {
     host: "127.0.0.1",
     port: 8080, // 端口号
