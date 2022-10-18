@@ -1,3 +1,4 @@
+// 项目所有插件的汇总文件
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios';
