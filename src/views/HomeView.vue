@@ -2,12 +2,13 @@
   <div class="home">
     <el-header class="pageHeader" style="height: 100px">
       <div class="header_container">
-        <el-menu 
-          class="navBar" 
+        <el-menu
+          class="navBar"
           mode="horizontal"
           background-color="#2F4F4F"
           text-color="#fff"
-          active-text-color="#F0FFFF">
+          active-text-color="#F0FFFF"
+        >
           <el-menu-item index="1">
             <router-link to="/home">首页</router-link>
           </el-menu-item>
@@ -34,10 +35,11 @@
           </el-menu-item>
         </el-menu>
         <div class="input">
-          <el-input 
+          <el-input
             v-model="keyword"
             placeholder="请输入查询内容，按enter确认"
-            @change="searchMovies">
+            @change="searchMovies"
+          >
           </el-input>
         </div>
       </div>
@@ -55,8 +57,9 @@
           <template>
             <div class="ad" v-for="adObj in prop.ads" :key="adObj.id">
               <el-image
-                style="width: 310px; height: 400px; margin-bottom: 10px;"
-                :src="adObj.pic">
+                style="width: 310px; height: 400px; margin-bottom: 10px"
+                :src="adObj.pic"
+              >
               </el-image>
             </div>
           </template>
@@ -82,134 +85,132 @@
 </template>
 
 <script>
-  import HomeFooter from '@/components/HomeFooter.vue';
-import Advert from '@/components/Advert.vue';
-  export default {
-    name: 'HomeView',
-    components: {
-      HomeFooter,
-      Advert
-    },
-    data() {
-      return {
-        keyword: '',
-        prop: {
-          title: '广告位',
-          ads: [
-            {
-                id: '001',
-                name:"ad 1",
-                pic:"upload/top250/1.jpg",
-                link:"http://xxx.xxx1.com",
-            },
-            {
-                id: '002',
-                name:"ad 2",
-                pic:"upload/top250/1.jpg",
-                link:"http://xxx.xxx2.com",
-            },
-            {
-                id: '003',
-                name:"ad 3",
-                pic:"upload/top250/1.jpg",
-                link:"http://xxx.xxx3.com",
-            }
-          ]
-        }
+import HomeFooter from "@/components/HomeFooter.vue";
+import Advert from "@/components/Advert.vue";
+export default {
+  name: "HomeView",
+  components: {
+    HomeFooter,
+    Advert,
+  },
+  data() {
+    return {
+      keyword: "",
+      prop: {
+        title: "广告位",
+        ads: [
+          {
+            id: "001",
+            name: "ad 1",
+            pic: "upload/top250/1.jpg",
+            link: "http://xxx.xxx1.com",
+          },
+          {
+            id: "002",
+            name: "ad 2",
+            pic: "upload/top250/1.jpg",
+            link: "http://xxx.xxx2.com",
+          },
+          {
+            id: "003",
+            name: "ad 3",
+            pic: "upload/top250/1.jpg",
+            link: "http://xxx.xxx3.com",
+          },
+        ],
+      },
+    };
+  },
+  methods: {
+    searchMovies() {
+      if (this.keyword) {
+        this.$router.push("/home/search/" + this.keyword);
       }
+      this.keyword = "";
     },
-    methods: {
-      searchMovies() {
-        if (this.keyword) {
-          this.$router.push('/home/search/' + this.keyword);
-        }
-        this.keyword = '';
-      }
-    }
-  }
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .home {
-    overflow: hidden;
+.home {
+  overflow: hidden;
+}
+
+.pageHeader {
+  width: 100%;
+  background-color: #2f4f4f;
+  height: 100px;
+  padding: 20px 100px;
+  position: fixed;
+  z-index: 1;
+  overflow: hidden;
+}
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .navBar {
+    border-bottom: none;
+    a {
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    & > li:first-child > a {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
   }
 
-  .pageHeader {
-    width: 100%;
-    background-color: #2F4F4F;
-    height: 100px;
-    padding: 20px 100px;
-    position: fixed;
-    z-index: 1;
-    overflow: hidden;
+  .input {
+    padding: 0 20px;
+    width: 300px;
   }
-  .header_container {
+}
+
+.pageFooter {
+  background-color: #e0ffff;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  line-height: 4.5;
+  color: #2f4f4f;
+
+  .link-list {
     display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    & li {
+      display: inline-block;
+      padding: 0 10px;
+      line-height: 60px;
 
-    .navBar {
-      border-bottom: none;
-      a {
-        text-decoration: none;
-        font-size: .8rem;
-        font-weight: bold;
-        letter-spacing: 2px;
-      }
-      & > li:first-child > a {
-        font-size: 1.2rem;
-        font-weight: bold;
-      }
-    }
-
-    .input {
-      padding: 0 20px;
-      width: 300px;
-    }
-  }
-
-  .pageFooter {
-    background-color: #E0FFFF;
-    text-align: center;
-    font-size: .7rem;
-    font-weight: bold;
-    line-height: 4.5;
-    color: #2F4F4F;
-
-    .link-list {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      margin: 0;
-      & li {
-        display: inline-block;
-        padding: 0 10px;
-        line-height: 60px;
-
-        & a {
-          cursor: pointer;
-          font-weight: normal;
-        }
+      & a {
+        cursor: pointer;
+        font-weight: normal;
       }
     }
   }
+}
 
-  .container {
-    background-color: #F0FFFF;
-    width: 1700px;
-    gap: 50px;
-    margin: 100px auto 0;
-    padding: 40px 70px;
-    .pageMain {
-      // background-color: aqua;
-      padding: 0;
-    }
-  
-    .pageAside {
-      // background-color: #E0FFFF;
-      
-    }
+.container {
+  background-color: #f0ffff;
+  width: 1700px;
+  gap: 50px;
+  margin: 100px auto 0;
+  padding: 40px 70px;
+  .pageMain {
+    // background-color: aqua;
+    padding: 0;
   }
 
+  .pageAside {
+    // background-color: #E0FFFF;
+  }
+}
 </style>
