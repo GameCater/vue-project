@@ -7,8 +7,7 @@
           mode="horizontal"
           background-color="#2F4F4F"
           text-color="#fff"
-          active-text-color="#F0FFFF"
-        >
+          active-text-color="#F0FFFF">
           <el-menu-item index="1">
             <router-link to="/home">首页</router-link>
           </el-menu-item>
@@ -153,7 +152,13 @@ export default {
 
   .navBar {
     border-bottom: none;
+    .el-menu-item {
+      padding: 0;
+    }
     a {
+      display: inline-block;
+      height: 100%;
+      padding: 0 20px;
       text-decoration: none;
       font-size: 0.8rem;
       font-weight: bold;

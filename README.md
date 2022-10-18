@@ -5,6 +5,10 @@
 - node.js
 - express
 
+## 插件
+- axios
+- dayjs
+
 ## 项目初始化
 ```
 npm install

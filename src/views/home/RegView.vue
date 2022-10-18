@@ -1,27 +1,34 @@
 <template>
-  <dl class="card">
-    <dt class="card-header">RegView</dt>
-    <dd class="card-body">
-      <div>用户头像</div>
-      <input type="text" v-model.trim="user.image" class="el-input__inner" />
-      <div>
-        <el-image :src="user.image" class="float-right"></el-image>
-        <el-upload
-          drag
-          name="img"
-          action="/api/upload"
-          :on-success="handlerSuccess"
-          :on-change="handleChangeFn"
-        >
-          <i class="el-icon-upload"></i>
-          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-          <div class="el-upload__tip" slot="tip">
-            只能上传jpg/png文件，且不超过500kb
-          </div>
-        </el-upload>
+  <div class="register">
+    <el-card>
+      <div slot="header">
+        <span class="title">注册新用户</span>
       </div>
-    </dd>
-  </dl>
+      <el-form :model="registerInfo" class="register_form">
+        <el-form-item>
+          <el-input 
+            placeholder="账号"
+            class="login_form_input"
+            v-model.trim="registerInfo.username">
+          </el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input 
+            placeholder="密码" 
+            class="login_form_input"
+            v-model.trim="registerInfo.pwd">
+          </el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button 
+            class="login_form_submit"
+            style="background-color: #2f4f4f; color: white; font-weight: bold; width: 300px;"
+            @click="onSubmit">注册
+          </el-button>
+        </el-form-item>
+      </el-form>
+    </el-card>
+  </div>
 </template>
 
 <script>
@@ -29,7 +36,7 @@ export default {
   name: "RegView",
   data() {
     return {
-      user: {
+      registerInfo: {
         image: "",
       },
     };
@@ -44,6 +51,9 @@ export default {
     handleChangeFn(file, fileList) {
       console.log(file, fileList);
     },
+    onSubmit() {
+
+    }
   },
   components: {},
   created() {},
@@ -56,4 +66,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.register_form {
+  width: 300px;
+  margin: 0 auto;
+}
 </style>
