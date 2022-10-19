@@ -17,21 +17,27 @@
           <el-menu-item index="3">
             <router-link to="/home/top">推荐电影</router-link>
           </el-menu-item>
-          <el-menu-item index="4">
-            <router-link to="/home/ucenter">用户中心</router-link>
-          </el-menu-item>
-          <el-menu-item index="5">
-            <router-link to="/home/login">登录</router-link>
-          </el-menu-item>
-          <el-menu-item index="6">
-            <router-link to="/home/reg">注册</router-link>
-          </el-menu-item>
-          <el-menu-item index="7" disabled>
-            <router-link to="/home/detail/34543456564">测试详情</router-link>
-          </el-menu-item>
-          <el-menu-item index="8">
-            <router-link to="/admin">admin</router-link>
-          </el-menu-item>
+          <!-- 用户登陆成功后显示 -->
+          <template v-if="USER_STATE">
+            <el-menu-item index="4">
+              <router-link to="/home/ucenter">用户中心</router-link>
+            </el-menu-item>
+          </template>
+          <!-- 游客状态显示i，退出显示在用户中心 -->
+          <template v-if="!USER_STATE">
+            <el-menu-item index="5">
+              <router-link to="/home/login">登录</router-link>
+            </el-menu-item>
+            <el-menu-item index="6">
+              <router-link to="/home/reg">注册</router-link>
+            </el-menu-item>
+          </template>
+          <!-- 用户权限为管理员时显示 -->
+          <template v-if="USER?.user?.state === 4">
+            <el-menu-item index="7">
+              <router-link to="/admin">admin</router-link>
+            </el-menu-item>
+          </template>
         </el-menu>
         <div class="input">
           <el-input
@@ -86,6 +92,7 @@
 <script>
 import HomeFooter from "@/components/HomeFooter.vue";
 import Advert from "@/components/Advert.vue";
+import { mapState } from 'vuex';
 export default {
   name: "HomeView",
   components: {
@@ -117,8 +124,11 @@ export default {
             link: "http://xxx.xxx3.com",
           },
         ],
-      },
+      }
     };
+  },
+  computed: {
+    ...mapState(['USER', 'USER_STATE']),
   },
   methods: {
     searchMovies() {
@@ -127,7 +137,7 @@ export default {
       }
       this.keyword = "";
     },
-  },
+  }
 };
 </script>
 

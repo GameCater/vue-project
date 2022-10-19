@@ -7,15 +7,16 @@
       <el-form :model="loginInfo" class="login_form">
         <el-form-item>
           <el-input 
-            placeholder="请输入账号" 
+            placeholder="请输入邮箱号" 
             class="login_form_input"
-            v-model.trim="loginInfo.username">
+            v-model.trim="loginInfo.email">
           </el-input>
         </el-form-item>
         <el-form-item>
           <el-input 
             placeholder="请输入密码" 
             class="login_form_input"
+            type="password"
             v-model.trim="loginInfo.pwd">
           </el-input>
         </el-form-item>
@@ -32,6 +33,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
   name: "LoginView",
   data() {
@@ -42,24 +44,38 @@ export default {
   computed: {},
   watch: {},
   methods: {
+    ...mapMutations(['TAB_USER']),
     onSubmit() {
-
-    }
-  },
-  components: {},
-  created() {},
-  /*组件内的守卫*/
-  beforeRouteLeave(to, from, next) {
-    //判断当前路由离开时触发 函数
-    this.$confirm('确认取消登录?', '提示', {
-          cancelButtonText: '取消',
-          confirmButtonText: '确定',
-          type: 'warning',
-          confirmButtonClass: 'message_confirm_button'
-        }).then(() => {
-          next();
+      this.$axios({
+        url: '/api/login',
+        method: 'post',
+        data: this.loginInfo
+      }).then(({ data }) => {
+        const { status, data: user, token } = data;
+        if (status) {
+          // 更新状态机状态
+          this.TAB_USER(user);
+          // 本地存储token
+          localStorage.setItem('token', token);
+          this.$message({
+            type: 'success',
+            message: '登陆成功'
+          })
+          this.$router.replace('/home');
+        } else {
+          this.$message({
+            type: 'error',
+            message: '登陆失败'
+          })
+        }
+      }).catch((err) => {
+        this.$message({
+          type: 'error',
+          message: '登陆失败'
         })
-  },
+      })
+    }
+  }
 };
 </script>
 

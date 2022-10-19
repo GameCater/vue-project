@@ -7,15 +7,16 @@
       <el-form :model="registerInfo" class="register_form">
         <el-form-item>
           <el-input 
-            placeholder="账号"
+            placeholder="邮箱"
             class="login_form_input"
-            v-model.trim="registerInfo.username">
+            v-model.trim="registerInfo.email">
           </el-input>
         </el-form-item>
         <el-form-item>
           <el-input 
             placeholder="密码" 
             class="login_form_input"
+            type="password"
             v-model.trim="registerInfo.pwd">
           </el-input>
         </el-form-item>
@@ -36,31 +37,31 @@ export default {
   name: "RegView",
   data() {
     return {
-      registerInfo: {
-        image: "",
-      },
+      registerInfo: {},
     };
   },
   computed: {},
   watch: {},
   methods: {
-    handlerSuccess(res, file) {
-      console.log(res.path, file);
-      this.user.image = "http://localhost:6600/" + res.path;
-    },
-    handleChangeFn(file, fileList) {
-      console.log(file, fileList);
-    },
     onSubmit() {
-
+      console.log(this.registerInfo);
+      this.$axios({
+        url: '/api/adduserdata',
+        method: 'post',
+        data: this.registerInfo
+      }).then((res) => {
+        this.$message({
+          type: 'success',
+          message: '注册成功'
+        })
+        this.$router.replace('/home');
+      }).catch((err) => {
+        this.$message({
+          type: 'error',
+          message: err
+        })
+      })
     }
-  },
-  components: {},
-  created() {},
-  mounted() {
-    console.log("加载完成 ");
-    console.log(this.$route.meta.title);
-    // document.title=this.$route.meta.title
   },
 };
 </script>

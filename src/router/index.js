@@ -36,7 +36,7 @@ const routes = [
         name:"ucenter",
         component: () => import("@/views/home/UcenterView.vue"),
         beforeEnter: (to, from, next) => {
-          const token = true;
+          const token = localStorage.getItem('token');
           if (token) {
             next();
           } else {
