@@ -1,6 +1,11 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <el-backtop 
+      :visibility-height="500"
+      :bottom="50"
+      :right="200">
+    </el-backtop>
   </div>
 </template>
 
@@ -18,7 +23,7 @@ export default {
       }).then(({ data }) => {
         const { status, err, data: user } = data;
         if (status) {
-          this.TAB_USER(user);
+          this.TAB_USER(user.user);
         } else {
           this.TAB_USER();
         }
@@ -35,4 +40,7 @@ export default {
 
 <style lang="scss">
   @import url('@/assets/style.scss');
+  .el-icon-caret-top {
+    color: #2f4f4f;
+  }
 </style>

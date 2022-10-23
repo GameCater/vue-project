@@ -33,7 +33,7 @@
             </el-menu-item>
           </template>
           <!-- 用户权限为管理员时显示 -->
-          <template v-if="USER?.user?.state === 4">
+          <template v-if="USER?.state === 4">
             <el-menu-item index="7">
               <router-link to="/admin">admin</router-link>
             </el-menu-item>
@@ -140,6 +140,15 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.login_form_input {
+  input:focus {
+    border: 1px solid #2f4f4f;
+    outline: none;
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 .home {

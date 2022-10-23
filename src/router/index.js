@@ -40,7 +40,10 @@ const routes = [
           if (token) {
             next();
           } else {
-            alert('请先登录');
+            Vue.prototype.$message({
+              type: 'error',
+              message: '请先登录'
+            })
             next('/home/login');
           }
         }
@@ -108,5 +111,9 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+
+router.afterEach((to, from) => {
+  window.scrollTo(0, 0);
+}); 
 
 export default router

@@ -34,6 +34,7 @@
 
 <script>
 import { mapMutations } from 'vuex';
+import md5 from 'md5';
 export default {
   name: "LoginView",
   data() {
@@ -41,7 +42,11 @@ export default {
       loginInfo: {},
     };
   },
-  computed: {},
+  computed: {
+    pwd() {
+      return md5(this.loginInfo.pwd);
+    }
+  },
   watch: {},
   methods: {
     ...mapMutations(['TAB_USER']),
@@ -49,7 +54,10 @@ export default {
       this.$axios({
         url: '/api/login',
         method: 'post',
-        data: this.loginInfo
+        data: {
+          email: this.loginInfo.email,
+          pwd: this.pwd
+        }
       }).then(({ data }) => {
         const { status, data: user, token } = data;
         if (status) {

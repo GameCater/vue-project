@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import md5 from 'md5';
 export default {
   name: "RegView",
   data() {
@@ -40,15 +41,20 @@ export default {
       registerInfo: {},
     };
   },
-  computed: {},
-  watch: {},
+  computed: {
+    pwd() {
+      return md5(this.registerInfo.pwd);
+    }
+  },
   methods: {
     onSubmit() {
-      console.log(this.registerInfo);
       this.$axios({
         url: '/api/adduserdata',
         method: 'post',
-        data: this.registerInfo
+        data: {
+          email: this.registerInfo.email,
+          pwd: this.pwd
+        }
       }).then((res) => {
         this.$message({
           type: 'success',
