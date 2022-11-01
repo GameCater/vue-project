@@ -33,6 +33,9 @@
               <span class="rating_aside_overview">{{ movieInfo.judge }}评价</span>
             </div>
           </div>
+          <div class="order">
+            <button @click="toOrder">购票</button>
+          </div>
         </div>
       </div>
       <div class="movie_detail_footer">
@@ -79,6 +82,9 @@ export default {
           }
         );
     },
+    toOrder() {
+      this.$router.push(`/home/sessions/${this.movieInfo._id}`);
+    }
   },
   created() {
     this.getMovieDetail();
@@ -146,6 +152,24 @@ export default {
               margin-right: 1px;
             }
           }
+        }
+      }
+
+      .order {
+        margin-top: 50px;
+        padding: 0 20px;
+        text-align: center;
+
+        & > button {
+          background-color: #2f4f4f;
+          color: #eee;
+          width: 100%;
+          height: calc(20px + 2vh);
+          border-radius: .2em;
+
+          font-weight: bold;
+          letter-spacing: .2em;
+          cursor: pointer;
         }
       }
     }

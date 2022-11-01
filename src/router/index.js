@@ -70,6 +70,16 @@ const routes = [
         path: "detail/:id",
         name: "detail",
         component: () => import("@/views/home/DetailView.vue")
+      },
+      {
+        path: "sessions/:id",
+        name: "sessions",
+        component: () => import("@/views/home/SessionsView.vue")
+      },
+      {
+        path: "order/:id",
+        name: "orderDetail",
+        component: () => import("@/views/home/OrderDetail.vue")
       }
     ]
   },
@@ -101,7 +111,12 @@ const routes = [
         path: "ordermanage",
         name:"ordermanage",
         component:()=>import("../views/admin/OrderManageView.vue")
-      }
+      },
+      {
+        path: "sessionmanage",
+        name: "sessionmanage",
+        component: () => import("../views/admin/SessionManageView.vue")
+      },
     ]
   },
   { path: '/err', component: () => import('@/views/NotFound.vue') },

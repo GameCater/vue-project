@@ -8,8 +8,7 @@
           class="navBar"
           background-color="#B0E0E6"
           text-color="#2F4F4F"
-          unique-opened
-        >
+          unique-opened>
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
@@ -75,6 +74,9 @@
               <el-menu-item>
                 <router-link to="/admin/ordermanage">订单列表</router-link>
               </el-menu-item>
+              <el-menu-item>
+                <router-link to="/admin/sessionmanage">场次列表</router-link>
+              </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
@@ -83,7 +85,7 @@
         <el-main class="main">
           <router-view>后台二级路由</router-view>
         </el-main>
-        <el-footer class="pageFooter"> @vue </el-footer>
+        <el-footer class="pageFooter"> @alo </el-footer>
       </el-container>
     </el-container>
   </el-container>
