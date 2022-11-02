@@ -98,6 +98,31 @@ const routes = [
         component:()=>import("../views/admin/UserManageView.vue")
       },
       {
+        path: "adduser",
+        name:"addUser",
+        component:()=>import("../views/admin/EditUserView.vue")
+      },
+      {
+        path: "addcinema",
+        name:"addCiname",
+        component:()=>import("../views/admin/EditCinemaView.vue")
+      },
+      {
+        path: "edituser/:id",
+        name:"editUser",
+        component:()=>import("../views/admin/EditUserView.vue")
+      },
+      {
+        path: "editcinema/:id",
+        name:"editCinema",
+        component:()=>import("../views/admin/EditCinemaView.vue")
+      },
+      {
+        path: "addmovie",
+        name:"addMovie",
+        component:()=>import("../views/admin/EditMovieView.vue")
+      },
+      {
         path: "moviemanage",
         name:"moviemanage",
         component:()=>import("../views/admin/MovieManageView.vue")

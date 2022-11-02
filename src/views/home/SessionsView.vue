@@ -44,7 +44,13 @@ export default {
   methods: {
     genOrder(sid) {
       const uid = this.$store.state.USER._id;
-      if (!uid) return;
+      if (!uid) {
+        this.$message({
+          type: 'error',
+          message: '请先登录'
+        })
+        return;
+      }
       this.$axios.get(`/api/generateOrder?uid=${uid}&sid=${sid}`)
           .then(response => {
             // console.log(response);
